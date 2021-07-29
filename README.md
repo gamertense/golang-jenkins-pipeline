@@ -15,3 +15,9 @@ Furthermore it shall be deployed on k8s.
 ## GO
 Simple code for a web server.
 Its target via port 9000 and /hello
+
+### GO Mod
+Its now integrated and working. Compileing the program works.
+I'll let the compiled program sit in this scm for the moment.
+
+---
