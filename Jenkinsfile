@@ -7,7 +7,7 @@ pipeline {
         stage("build") {
 
             steps {
-                echo 'building the appilcation..'
+                echo 'building the appilcation.. And a Change for jenkins :)'
             }
         }
 
