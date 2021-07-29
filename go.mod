@@ -1,3 +1,3 @@
-module github.com/PatrickLaabs/golang-jenkins-pipeline/main/v2
+module github.com/PatrickLaabs/golang-jenkins-pipeline
 
 go 1.16
