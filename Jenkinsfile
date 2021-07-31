@@ -7,7 +7,7 @@ pipeline {
     environment {
         GO111MODULE = 'on'
         NEW_VERSION = '0.0.1'
-        CODECOV_TOKEN = credentials(239b7d9a-c321-45ac-be06-7e24e9d0999d)
+        CODECOV_TOKEN = '239b7d9a-c321-45ac-be06-7e24e9d0999d'
     }
     stages {
 
