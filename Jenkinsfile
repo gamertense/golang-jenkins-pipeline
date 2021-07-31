@@ -6,6 +6,7 @@ pipeline {
     }
     environment {
         GO111MODULE = 'on'
+        CGO_ENABLED = '0'
         NEW_VERSION = '0.0.1'
         CODECOV_TOKEN = '03a98dd0-3f7a-48a4-8a2a-b5fe2e0b506a'
         GITHUB_TOKEN = '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'
