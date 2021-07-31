@@ -7,7 +7,7 @@ pipeline {
     environment {
         GO111MODULE = 'on'
         NEW_VERSION = '0.0.1'
-        CODECOV_TOKEN = '239b7d9a-c321-45ac-be06-7e24e9d0999d'
+        CODECOV_TOKEN = '03a98dd0-3f7a-48a4-8a2a-b5fe2e0b506a'
     }
     stages {
 
@@ -31,6 +31,7 @@ pipeline {
 
         stage('Code Analysis') {
             steps {
+                echo 'starting code analysis'
                 sh 'curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | bash -s -- -b $GOPATH/bin v1.12.5'
                 sh 'golangci-lint run'
             }
