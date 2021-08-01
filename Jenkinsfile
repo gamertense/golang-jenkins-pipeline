@@ -28,13 +28,6 @@ pipeline {
             }
         }
 
-        stage('Code Analysis') {
-            steps {
-                sh 'go get github.com/golangci/golangci-lint/cmd/golangci-lint@v1.41.1'
-                sh 'golangci-lint run'
-            }
-        }
-
         stage('Release') {
             when {
                 buildingTag()
