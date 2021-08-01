@@ -1,30 +1,50 @@
 pipeline {
 
     agent any
+    tools {
+        go 'go-1.16'
+    }
     environment {
-        NEW_VERSION = '0.0.1'
+        GO111MODULE = 'on'
+        CGO_ENABLED = 0 
+        GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}"
     }
     stages {
 
-        stage("build") {
+        stage('Build') {
 
             steps {
-                echo 'building the appilcation.. And a Change for jenkins :)'
-                echo "building version ${NEW_VERSION} and Build: ${BUILD_DISPLAY_NAME}"
+                sh 'go build'
             }
         }
 
-                stage("test") {
-
+        stage('Test') {
+            environment {
+                    CODECOV_TOKEN = credentials('CODECOV_TOKEN')
+                }
             steps {
-                echo 'testing the application..'
+                sh 'go test -coverprofile=coverage.txt'
+                sh 'curl -s https://codecov.io/bash | bash -s -'
             }
         }
 
-                stage("deploy") {
-                    
+        stage('Code Analysis') {
             steps {
-                echo 'deploying the application..'
+                sh 'go get github.com/golangci/golangci-lint/cmd/golangci-lint@v1.41.1'
+                sh 'golangci-lint run'
+            }
+        }
+
+        stage('Release') {
+            when {
+                buildingTag()
+            }
+            environment {
+                GITHUB_TOKEN = credentials('GITHUB_TOKEN')
+            }
+            steps {
+                echo 'starting the release to goreleaser'
+                sh 'curl -sL https://git.io/goreleaser | bash'
             }
         }
     }
