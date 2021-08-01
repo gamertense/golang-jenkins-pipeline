@@ -30,7 +30,7 @@ pipeline {
 
         stage('Code Analysis') {
             steps {
-                sh 'curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $GOPATH/bin v1.41.1'
+                sh 'go get github.com/golangci/golangci-lint/cmd/golangci-lint@v1.41.1'
                 sh 'golangci-lint run'
             }
         }
