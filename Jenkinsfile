@@ -13,6 +13,14 @@ pipeline {
     }
     stages {
 
+        stage("Pre Test") {
+            steps {
+                echo 'Installing dependencies'
+                sh 'go version'
+                sh 'go get github.com/golangci/golangci-lint/cmd/golangci-lint@v1.41.1'
+            }
+        }
+
         stage("build") {
 
             steps {
@@ -22,11 +30,16 @@ pipeline {
         }
 
         stage("test") {
-
+            
             steps {
-                echo 'testing the application..'
-                sh 'go test -coverprofile=coverage.txt'
-                sh 'curl -s https://codecov.io/bash | bash -s -'
+                withEnv(["PATH+GO=${GOPATH}/bin"]){
+                    echo 'Running vetting'
+                    sh 'go vet .'
+                    echo 'Running linting'
+                    sh 'golint .'
+                    echo 'Running test'
+                    sh 'cd test && go test -v'
+                }
             }
         }
 
