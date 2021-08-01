@@ -19,11 +19,10 @@ pipeline {
         }
 
         stage('Test') {
-
-            steps {
-                environment {
+            environment {
                     CODECOV_TOKEN = credentials('CODECOV_TOKEN')
                 }
+            steps {
                 sh 'go test -coverprofile=coverage.txt'
                 sh 'curl -s https://codecov.io/bash | bash -s -'
             }
@@ -42,11 +41,11 @@ pipeline {
             }
             environment {
                 GITHUB_TOKEN = credentials('GITHUB_TOKEN')
+            }
             steps {
                 echo 'starting the release to goreleaser'
                 sh 'curl -sL https://git.io/goreleaser | bash'
             }
         }
     }
-}
 }
