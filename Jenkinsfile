@@ -5,7 +5,7 @@ pipeline {
         go 'go-1.16'
     }
     environment {
-        GO114MODULE = 'on'
+        GO111MODULE = 'on'
         CGO_ENABLED = 0 
         GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}"
         CODECOV_TOKEN = '03a98dd0-3f7a-48a4-8a2a-b5fe2e0b506a'
@@ -27,14 +27,6 @@ pipeline {
                 echo 'testing the application..'
                 sh 'go test -coverprofile=coverage.txt'
                 sh 'curl -s https://codecov.io/bash | bash -s -'
-            }
-        }
-
-        stage("Code Analysis") {
-            steps {
-                echo 'starting code analysis'
-                sh 'curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $GOPATH/bin v1.41.1'
-                sh 'golangci-lint run'
             }
         }
 
