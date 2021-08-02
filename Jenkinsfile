@@ -30,7 +30,7 @@ pipeline {
 
         stage('Release') {
             when {
-                buildingTag(v0.0.1)
+                buildingTag()
             }
             environment {
                 GITHUB_TOKEN = credentials('github-token')
