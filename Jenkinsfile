@@ -33,7 +33,7 @@ pipeline {
                 buildingTag()
             }
             environment {
-                GITHUB_TOKEN = credentials('GITHUB_TOKEN')
+                GITHUB_TOKEN = credentials('github-token')
             }
             steps {
                 echo 'starting the release to goreleaser'
