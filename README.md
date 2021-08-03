@@ -24,3 +24,4 @@ Its now integrated and working. Compileing the program works.
 I'll let the compiled program sit in this scm for the moment.
 
 --
+Typo
