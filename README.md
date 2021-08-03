@@ -1,4 +1,5 @@
 [![codecov](https://codecov.io/gh/PatrickLaabs/golang-jenkins-pipeline/branch/main/graph/badge.svg?token=KGX5YZ2WTI)](https://codecov.io/gh/PatrickLaabs/golang-jenkins-pipeline)
+[![CircleCI](circleci.com/pipelines/github/PatrickLaabs/golang-jenkins-pipeline.svg?style=svg)](<LINK>)
 
 # golang-jenkins-pipeline
 First jenkins build fora simple golang application
