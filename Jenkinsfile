@@ -10,6 +10,21 @@ pipeline {
         GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}"
     }
     stages {
+        stage("Prepare Test"){
+            parallel{
+                stage('Start local mongodb & redis') {
+                    steps {
+                        dir("${API_PATH}") {
+                            sh """
+                            ./services.sh start_mongodb &>/dev/null &
+                            ./services.sh start_redis &>/dev/null &
+                            sleep 5
+                            """
+                        }
+                    }
+                }
+            }
+        }
 
         stage('Build') {
 
