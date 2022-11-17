@@ -8,6 +8,7 @@ pipeline {
         GO111MODULE = 'on'
         CGO_ENABLED = 0 
         GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}"
+        PROJECT_PATH="/home/jenkins/golang-jenkins-pipeline"
         API_PATH="${PROJECT_PATH}/backend"
     }
     stages {
