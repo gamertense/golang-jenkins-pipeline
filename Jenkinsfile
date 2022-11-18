@@ -15,12 +15,21 @@ pipeline {
                 stage('Start local mongodb & redis') {
                     steps {
                         sh """
-                        ./services.sh start_mongodb &>/dev/null &
-                        ./services.sh start_redis &>/dev/null &
-                        sleep 5
+                            ./services.sh start_mongodb &>/dev/null &
+                            ./services.sh start_redis &>/dev/null &
+                            sleep 5
                         """
                     }
                 }
+            }
+        }
+
+        stage("Check MongoDB connection"){
+            steps {
+                sh """
+                    curl -i http://localhost:27017 &>/dev/null &
+                    curl -i http://localhost:27018 &>/dev/null &
+                """
             }
         }
 
