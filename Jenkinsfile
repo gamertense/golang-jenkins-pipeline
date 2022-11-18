@@ -27,8 +27,10 @@ pipeline {
         stage("Check MongoDB connection"){
             steps {
                 sh """
-                    curl -i http://localhost:27017 &
-                    curl -i http://localhost:27018 &
+                    curl -i http://localhost:27017
+                    curl -i http://localhost:27018
+                    curl -i http://mongodb_local:27018
+                    curl -i http://mongodb_local:27017
                 """
             }
         }
